@@ -50,7 +50,7 @@
         console.log(name + ' | ' + email + ' | ' + ins_name + ' | ' + ins_type + ' | ' + msg)
 
         $(document).ready(function(){
-          $.get('http://sw-kg.herokuapp.com/gs/'+name+'/'+email+'/'+ins_name+'/'+ins_type+'/'+msg, function(data){
+          $.get('https://sw-kg.herokuapp.com/gs/'+name+'/'+email+'/'+ins_name+'/'+ins_type+'/'+msg, function(data){
             console.log(data.status)
             document.getElementById('notif').style.display = 'none';
             document.getElementById('ok').style.display = 'none';
