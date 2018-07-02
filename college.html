@@ -34,6 +34,42 @@
         });
 
     })(jQuery);
+
+    function submit_form(){
+      document.getElementById('btn').style.display = 'none';
+      document.getElementById('loader').style.display = 'block';
+
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var ins_name = document.getElementById("ins_name").value;
+      var ins_type = 'COLLEGE';
+      var msg = document.getElementById("msg").value;
+
+      if((name.length != 0) && (email.length != 0) && (ins_name.length != 0) && (msg.length != 0)){
+        
+        console.log(name + ' | ' + email + ' | ' + ins_name + ' | ' + ins_type + ' | ' + msg)
+
+        $(document).ready(function(){
+          $.get('http://sw-kg.herokuapp.com/gs/'+name+'/'+email+'/'+ins_name+'/'+ins_type+'/'+msg, function(data){
+            console.log(data.status)
+            document.getElementById('notif').style.display = 'none';
+            document.getElementById('ok').style.display = 'none';
+            document.getElementById('na').style.display = 'none';
+            document.getElementById('loader').style.display = 'none';
+            if(data.status == 'OK'){
+              document.getElementById('ok').style.display = 'block';
+            }else{
+              document.getElementById('na').style.display = 'block';
+              document.getElementById('btn').style.display = 'block';
+            }
+          })
+        })
+
+      }else{
+        document.getElementById('notif').style.display = 'block';
+      }
+
+    }
     </script>
 
     <style type="text/css">
@@ -117,7 +153,7 @@
 
         <div class="col-lg-3 col-md-3"></div>
         <div class="col-lg-6 col-md-6">
-         <form action="#" style="width: 100%;">
+         <!-- <form action="#" style="width: 100%;"> -->
           <div class="form-group">
             <label for="name">Full Name:</label>
             <input type="name" class="form-control" id="name">
@@ -127,15 +163,19 @@
             <input type="email" class="form-control" id="email">
           </div>
           <div class="form-group">
-            <label for="s_name">School Name:</label>
-            <input type="text" class="form-control" id="s_name">
+            <label for="s_name">College Name:</label>
+            <input type="text" class="form-control" id="ins_name">
           </div>
            <div class="form-group">
             <label for="msg">Message:</label>
             <textarea class="form-control" rows="5" id="msg"></textarea>
           </div> 
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form> 
+          <p style="color: red; display: none;" id="notif">Please fill all the fields</p>
+          <p style="color: green; display: none;" id="ok">Request submitted successfully! We will reach out to you soon :)</p>
+          <p style="color: red; display: none;" id="na">Error submitting request :(</p>
+          <button id="btn" style="display: block;" type="" class="btn btn-default" onclick="submit_form()">Submit</button>
+          <img src="img/loader.gif" id="loader" style="width: 20%; display: none;">
+        <!-- </form> --> 
         </div>
         <div class="col-lg-3 col-md-3"></div>
       </div>
