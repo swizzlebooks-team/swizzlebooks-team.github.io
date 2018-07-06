@@ -66,6 +66,44 @@
         });
 
     })(jQuery);
+
+    function submit_form(){
+      document.getElementById('btn').style.display = 'none';
+      document.getElementById('loader').style.display = 'block';
+
+      var name = document.getElementById("name").value;
+      var number = document.getElementById("number").value;
+      var email = document.getElementById("email").value;
+      var type = document.getElementById("type").value;
+      var time = document.getElementById("time").value;
+
+      var req_data = {"name": name, "number": number, "email": email, "type": type, "time": time};
+
+      if((name.length != 0) && (email.length != 0) && (number.length != 0)){
+        
+        console.log(name + ' | ' + email + ' | ' + number + ' | ' + type + ' | ' + time)
+
+        $(document).ready(function(){
+          $.get('https://sw-kg.herokuapp.com/dd/'+JSON.stringify(req_data), function(data){
+            console.log(data.status)
+            document.getElementById('notif').style.display = 'none';
+            document.getElementById('ok').style.display = 'none';
+            document.getElementById('na').style.display = 'none';
+            document.getElementById('loader').style.display = 'none';
+            if(data.status == 'OK'){
+              document.getElementById('ok').style.display = 'block';
+            }else{
+              document.getElementById('na').style.display = 'block';
+              document.getElementById('btn').style.display = 'block';
+            }
+          })
+        })
+
+      }else{
+        document.getElementById('notif').style.display = 'block';
+      }
+
+    }
     </script>
 
     <style type="text/css">
@@ -251,8 +289,9 @@
         </div>
       </div>
 
-      <div class="row" style="background-color: #f2de96; padding-top: 25px; padding-bottom: 50px;">
-        <div class="col-md-12">
+
+      <div class="row" style="background-image: -webkit-linear-gradient(180deg, #ef3764 0%, #f47550 100%); padding-top: 25px; padding-bottom: 50px;">
+        <!-- <div class="col-md-12">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4 text-center">
@@ -264,7 +303,106 @@
             </div>
             <div class="col-md-4"></div>
           </div>
+        </div> -->
+
+        <div class="col-md-12">
+
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+              <h2 style="padding-top: 25px;">Reach Us</h2>
+              <hr style="width: 50px; border-width: 5px; border-color: #2d2d2d; padding-bottom: 25px;">
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 100px;">
+              <p style="font-size: 2em;">Tell us your name</p>
+            </div>
+            <div class="col-md-6" style="padding-right: 20%;">
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 100px;">
+              <p style="font-size: 2em;">What is your phone number?</p>
+            </div>
+            <div class="col-md-6" style="padding-right: 20%;">
+              <div class="form-group">
+                <input type="text" class="form-control" id="number" placeholder="Enter mobile number">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 100px;">
+              <p style="font-size: 2em;">What is your email id?</p>
+            </div>
+            <div class="col-md-6" style="padding-right: 20%;">
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Enter your email id">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 100px;">
+              <p style="font-size: 2em;">Select the appropriate option for yourself</p>
+            </div>
+            <div class="col-md-6" style="padding-right: 20%;">
+              <div class="form-group">
+                <select class="form-control" name="type" id="type">
+                  <option value="Student">I am a student</option>
+                  <option value="Faculty">I am a faculty</option>
+                  <option value="Teacher">I am a teacher</option>
+                  <option value="Institute">We are an educational institute</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" style="padding-left: 100px;">
+              <p style="font-size: 2em;">When would you prefer us to contact you?</p>
+            </div>
+            <div class="col-md-6" style="padding-right: 20%;">
+              <div class="form-group">
+                <select class="form-control" name="time" id="time">
+                  <option value="morning">Morning</option>
+                  <option value="afternoon">Afternoon</option>
+                  <option value="evening">Evening</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12" style="padding-left: 100px;">
+              <p style="color: #fff; display: none;" id="notif">Please fill all the fields</p>
+              <p style="color: #fff; display: none;" id="ok">Request submitted successfully! We will reach out to you soon :)</p>
+              <p style="color: #fff; display: none;" id="na">Error submitting request :(</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 text-center" style="padding-top: 15px;">
+              <button id="btn" class="btn btn-default" style="width: 20%;" onclick="submit_form()">Submit</button>
+              <center><img src="img/loader.gif" id="loader" style="width: 5%; display: none;"></center>
+            </div>
+          </div>
+
         </div>
+
+        
+
+        
+
+        <!--  -->
+
         
       </div>
       <div class="row" style="padding: 15px; background-color: #eee;">
