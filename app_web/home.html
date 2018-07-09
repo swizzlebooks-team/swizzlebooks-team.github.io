@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Swizzle Books | Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../img/sw_logo_nav.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Linear Icons -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <script type="text/javascript">
+
+      function show_filters(){
+        document.getElementById('filter_window').style.display = 'block';
+      }
+
+      function show_preview(){
+        window.location = "./preview.html";
+      }
+
+      function show_activities(){
+        window.location = "./activities.html";
+      }
+
+      function close_window(window_id){
+        document.getElementById(window_id).style.display = 'none';
+      }
+    </script>
+</head>
+<body>
+
+    <div class="container-fluid" style="position: relative;">
+      
+      <nav id="nav" class="navbar navbar-default navbar-fixed-top" style="display: block;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"  style="padding: 5px;">
+              <img src="../img/sw_logo_nav.png" style="">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" style=''>
+            <li class="active"><a href="./home.html">Home</a></li>
+            <li><a href="./notifications.html">Notifications</a></li>
+            <li><a href="./profile_settings.html">Settings</a></li>
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+
+        <div class="row" style="padding-top: 25px; position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1; display: block;">
+            <div class="col-md-12 text-center">
+                <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;" onclick="show_filters()"><i class="fa fa-filter"></i> Filters</button>
+                <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;" onclick="show_preview()"><i class="fa fa-eye"></i> Preview Book</button>
+                <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;" onclick="show_activities()"><i class="fa fa-asl-interpreting"></i> Activities</button>
+            </div>
+        </div>
+
+        <div id="filter_window" class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px;">
+            <div class="col-md-12" style="padding: 25px;">
+                <h3>Filters</h3>
+
+                <button>Latest First</button>
+                <button>Old First</button>
+                <br><br>
+                <p>Search By Date Range</p>
+                <label>From</label>
+                <div class="form-group">
+                  <div class="input-group date">
+                      <input type="text" class="form-control" placeholder="dd/mm/yyyy" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+                </div>
+
+                <label>To</label>
+                <div class="form-group">
+                  <div class="input-group date">
+                      <input type="text" class="form-control" placeholder="dd/mm/yyyy" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+                </div>
+
+                <label>Event name</label>
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="start typing event name..." />
+                </div>
+                
+                <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;" >Apply</button>
+
+            </div>
+
+            <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('filter_window')">x</button>
+        </div>
+
+        <!-- <div class="row" style="padding-top: 25px;">
+            <div class="col-md-3" style="background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin-left: 15px; margin-right: 15px;">
+                <div style="width: 100%; padding: 15px;  color: #2d2d2d;">
+                    <center>
+                        <img src="../img/dp.png" style="width:50%;">
+                        <h3>Jerry K</h3>
+                        <h4>ABC Institute</h4>
+                    </center>
+                    <h4>Bio</h4>
+                    <p>The bio goes here...The bio goes here...The bio goes here...The bio goes here...The bio goes here...The bio goes here...</p>
+                </div>
+            </div>
+            <div class="col-md-6" style="background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px;">
+                <div style="background-image: -webkit-linear-gradient(180deg, #ef3764 0%, #f47550 100%); width: 100%; height: 3px;"></div>
+                <center><p style="font-size: 2em; color: #2d2d2d; padding-top: 15px;">Forgot Password</p></center>
+                <div style="width: 100%; padding: 15px;  color: #2d2d2d;">
+                    <div class="row">
+                        <form action="" method="" style="padding-left: 75px; padding-right: 75px;">
+                            <div class="form-group">
+                                <label for="email">Email ID:</label>
+                                <input type="text" class="form-control" id="" placeholder="Enter email id">
+                            </div>
+                            <button class="btn purple" type="submit"><span>Continue</span></button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div> -->
+
+        <div class="row" style="padding-top: 25px; margin-top: 110px;">
+            <div class="col-md-12" style="margin-bottom: 15px; background-color: #ffffff; padding: 0px;">
+                
+                <div style="width: 40%;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto;">
+                <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
+                  <img src="../img/school_logo.png" style="width: 50px; float: left;">
+                  <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
+                    <p style="margin: 0px;"><b>School Name</b></p>
+                    <p style="margin: 0px;"><i>Activity name</i></p>
+                  </div>
+                  <p style="float: right;">15 mins ago</p>
+                  
+                </div>
+                
+                <div class="" style="width: 100%;">
+                  <img src="../img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+                </div>
+                
+                <div class="" style="width: 100%; padding-top: 10px; padding-left: 15px; padding-right: 15px;">
+                  <p>Some text goes here about the current activity that kids were part of...</p>
+                </div>
+
+                <!-- <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px; padding-top: 0px; padding-bottom: 5px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                </div> -->
+
+                <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+                  
+                  <i class="fa fa-bookmark-o" style="float: left; font-size: 25px; color: #ef3764;"></i>
+                  <i class="fa fa-share-alt" style="float: right; font-size: 25px; color: #f47550;"></i>
+                </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-12" style="margin-bottom: 15px; background-color: #ffffff; padding: 0px;">
+                
+                <div style="width: 40%;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto;">
+                <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
+                  <img src="../img/school_logo.png" style="width: 50px; float: left;">
+                  <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
+                    <p style="margin: 0px;"><b>School Name</b></p>
+                    <p style="margin: 0px;"><i>Activity name</i></p>
+                  </div>
+                  <p style="float: right;">15 mins ago</p>
+                  
+                </div>
+                
+                <div class="" style="width: 100%;">
+                  <img src="../img/kid.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+                </div>
+                
+                <div class="" style="width: 100%; padding-top: 10px; padding-left: 15px; padding-right: 15px;">
+                  <p>Some text goes here about the current activity that kids were part of...</p>
+                </div>
+
+                <!-- <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px; padding-top: 0px; padding-bottom: 5px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                  <img src="img/suraj.png" style="width: 25px;">
+                </div> -->
+
+                <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+                  
+                  <i class="fa fa-bookmark-o" style="float: left; font-size: 25px; color: #ef3764;"></i>
+                  <i class="fa fa-share-alt" style="float: right; font-size: 25px; color: #f47550;"></i>
+                </div>
+                </div>
+                
+            </div>
+
+            <div id="add_media_btn" style="position: fixed; bottom: 65px; right: 7%; z-index: 1; display: block;"> 
+                <a href="./add_feed.html" style="color: #fff; text-decoration: none;">
+                <p style="background-color: #ef3764; padding: 10px 13px 10px 13px; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                  <i class="fa fa-plus" style="color: #fff; font-size: 2em;"></i>
+                </p>
+                </a>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 25px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" style="">
+                <hr class="">
+                <p style="margin: 0px;">
+                    <center>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Home</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Career</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Blog</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Contact Us</a>
+                    </center>
+                </p>
+                <p style="margin: 0px;">
+                    <img src="../img/sw_logo_nav.png" style="width: 75px;"> © 2018 Copyright Swizzle Books (<a href="//swizzlebooks.com">https://swizzlebooks.com</a>).
+                    <a href="#" style="color: #1DA1F2;font-size: 1.2em;"><i class="fa fa-twitter-square"></i></a>
+                    <a href="#" style="color: #3B5998;font-size: 1.2em;"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#" style="color: #0077B5;font-size: 1.2em;"><i class="fa fa-linkedin-square"></i></a>
+                </p>
+                <center>
+                <p style="margin: 0px; font-style: italic; color: #424242; padding-bottom: 15px;">
+                    Make Your Own Yearbooks
+                </p>
+                </center>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Swizzle Books | Add Feed</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../img/sw_logo_nav.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Linear Icons -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+</head>
+<body>
+
+    <div class="container-fluid" style="position: relative;">
+      
+      <nav id="nav" class="navbar navbar-default navbar-fixed-top" style="display: block;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"  style="padding: 5px;">
+              <img src="../img/sw_logo_nav.png" style="">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" style=''>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./notifications.html">Notifications</a></li>
+            <li><a href="./profile_settings.html">Settings</a></li>
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+
+        <div class="row" style="padding-top: 25px; margin-top: 50px; display: block;">
+            <div class="col-md-12 text-center">
+                <h3>Add Feed</h3>
+            </div>
+        </div>
+
+        <!-- <div class="row" style="padding-top: 25px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px;">
+                <div style="background-image: -webkit-linear-gradient(180deg, #ef3764 0%, #f47550 100%); width: 100%; height: 3px;"></div>
+                
+                <form action="" method="" style="padding: 25px;">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="" placeholder="Start typing username or email id">
+                    </div>
+                    <h3>Recipient 1</h3>
+                    <div class="form-group">
+                        <label for="email">First Name:</label>
+                        <input type="text" class="form-control" id="" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Last Name:</label>
+                        <input type="text" class="form-control" id="" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email ID:</label>
+                        <input type="text" class="form-control" id="" placeholder="Email ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Issued on:</label>
+                        <input type="text" class="form-control" id="" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div class="form-group">
+                        <label>Evidence:</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">URL
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio">Upload file
+                        </label>
+                    </div>
+                    <button>Add recipient</button>
+                    <button class="btn purple" type="submit"><span>Issue Badge</span></button>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div> -->
+
+        <div class="row" style="padding-top: 15px;">
+          <div class="col-md-4"></div>
+          <div class="col-md-4" style="margin-top: 0px; background-color: #ffffff; padding: 0px;">
+            <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
+              <img src="../img/dp.png" style="width: 50px; float: left;">
+              <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
+                <p style="margin: 0px;"><b>Baby Gals Name</b></p>
+                <p style="margin: 0px;"><i>Parent name</i></p>
+              </div>
+
+              <div class="form-group" style="float: right;"> 
+                <select class="form-control" id="activities">
+                  <option value="0">Select Activity</option>
+                  <option value="tag1">Activity 1</option>
+                  <option value="tag2">Activity 2</option>
+                  <option value="tag3">Activity 3</option>
+                </select>
+              </div>
+              
+            </div>
+            <div class="" style="width: 100%; padding-left: 15px; padding-right: 15px;">
+              <p contenteditable="true" id="content_text">Some text goes here about the current activity that kids were part of...</p>
+            </div>
+            <div class="" style="width: 100%; padding-bottom: 0px;">
+              <img id="media_image" src="../img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0; display: block;">
+              <video id="media_video" preload="auto" controls style="width: 100%; border-radius: 0 0 0 0; display: none;" src="">
+              </video>
+            </div>
+            <br>
+            <input id="file-input-1" type="file" onchange="readURL(this);" />
+            <br>
+            <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;">Post</button>
+          </div>    
+          <div class="col-md-4"></div>
+
+        </div>
+
+        <div class="row" style="padding-top: 25px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" style="">
+                <hr class="">
+                <p style="margin: 0px;">
+                    <center>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Home</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Career</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Blog</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Contact Us</a>
+                    </center>
+                </p>
+                <p style="margin: 0px;">
+                    <img src="../img/sw_logo_nav.png" style="width: 75px;"> © 2018 Copyright Swizzle Books (<a href="//swizzlebooks.com">https://swizzlebooks.com</a>).
+                    <a href="#" style="color: #1DA1F2;font-size: 1.2em;"><i class="fa fa-twitter-square"></i></a>
+                    <a href="#" style="color: #3B5998;font-size: 1.2em;"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#" style="color: #0077B5;font-size: 1.2em;"><i class="fa fa-linkedin-square"></i></a>
+                </p>
+                <center>
+                <p style="margin: 0px; font-style: italic; color: #424242; padding-bottom: 15px;">
+                    Make Your Own Yearbooks
+                </p>
+                </center>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
