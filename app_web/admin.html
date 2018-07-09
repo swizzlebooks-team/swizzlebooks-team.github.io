@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Swizzle Books | Notifications</title>
+	<title>Swizzle Books | Admin Dashboard</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,6 +18,25 @@
 
     <!-- Linear Icons -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <script type="text/javascript">
+
+      function show_filters(){
+        document.getElementById('filter_window').style.display = 'block';
+      }
+
+      function show_preview(){
+        window.location = "./preview.html";
+      }
+
+      function show_activities(){
+        window.location = "./activities.html";
+      }
+
+      function close_window(window_id){
+        document.getElementById(window_id).style.display = 'none';
+      }
+    </script>
 </head>
 <body>
 
@@ -38,8 +57,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right" style=''>
-            <li><a href="./home.html">Home</a></li>
-            <li class="active"><a href="./notifications.html">Notifications</a></li>
+            <li class="active"><a href="./admin.html">Home</a></li>
+            <li><a href="./notifications.html">Notifications</a></li>
             <li><a href="./profile_settings.html">Settings</a></li>
             <li><a href="./index.html">Logout</a></li>
           </ul>
@@ -47,13 +66,40 @@
       </div>
       </nav>
 
-        <div class="row" style="padding-top: 25px; margin-top: 50px; display: block;">
-            <div class="col-md-12 text-center">
-                <h3>Notifications</h3>
-            </div>
+      <div class="row" style="margin-top: 50px; padding-top: 25px;">
+        <div class="col-md-12 text-center">
+          <h3>Welcome back to Swizzle Books!!</h3>
         </div>
+      </div>
 
-        <div class="row" style="padding-top: 25px;">
+      <div class="row" style="padding: 50px;">
+        <div class="col-md-4">
+          <div style="width: 100%; background-color: #ce93d8; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto; padding: 15px;">
+            <p style="font-size: 2em;">Book Completion : 27%</p>
+            <button  style="background-color: #424242; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff; font-size: 1.5em;">Preview Book</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="width: 100%; background-color: #f48fb1; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto; padding: 15px;">
+            <p style="font-size: 2em;">Manage Activities</p>
+            <button  style="background-color: #424242; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff; font-size: 1.5em;">Continue</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div style="width: 100%; background-color: #a5d6a7; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto; padding: 15px;">
+            <p style="font-size: 2em;">Manage Users</p>
+            <button  style="background-color: #424242; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff; font-size: 1.5em;">Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding-top: 25px;">
+        <div class="col-md-12 text-center">
+          <h3>Latest Feeds</h3>
+        </div>
+      </div>
+
+      <div class="row" style="padding-top: 25px;">
             <div class="col-md-12" style="margin-bottom: 15px; background-color: #ffffff; padding: 0px;">
                 
                 <div style="width: 40%;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto;">
@@ -67,10 +113,19 @@
                   
                 </div>
                 
-                <div class="" style="width: 100%; padding-bottom: 15px; padding-left: 15px; padding-right: 15px;">
+                <div class="" style="width: 100%;">
+                  <img src="../img/kids.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+                </div>
+                
+                <div class="" style="width: 100%; padding-top: 10px; padding-left: 15px; padding-right: 15px;">
                   <p>Some text goes here about the current activity that kids were part of...</p>
                 </div>
 
+                <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+                  
+                  <i class="fa fa-bookmark-o" style="float: left; font-size: 25px; color: #ef3764;"></i>
+                  <i class="fa fa-share-alt" style="float: right; font-size: 25px; color: #f47550;"></i>
+                </div>
                 </div>
                 
             </div>
@@ -79,19 +134,28 @@
                 
                 <div style="width: 40%;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin: 0 auto;">
                 <div class="" style="height: 80px; width: 100%; padding-top: 15px; padding-left: 15px; padding-right: 15px;">
-                  <img src="../img/dp.png" style="width: 50px; float: left;">
+                  <img src="../img/school_logo.png" style="width: 50px; float: left;">
                   <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
-                    <p style="margin: 0px;"><b>Jerry K</b></p>
+                    <p style="margin: 0px;"><b>School Name</b></p>
                     <p style="margin: 0px;"><i>Activity name</i></p>
                   </div>
-                  <p style="float: right;">45 mins ago</p>
+                  <p style="float: right;">15 mins ago</p>
                   
                 </div>
                 
-                <div class="" style="width: 100%; padding-bottom: 15px; padding-left: 15px; padding-right: 15px;">
+                <div class="" style="width: 100%;">
+                  <img src="../img/kid.jpg" style="width: 100%; border-radius: 0 0 0 0;">
+                </div>
+                
+                <div class="" style="width: 100%; padding-top: 10px; padding-left: 15px; padding-right: 15px;">
                   <p>Some text goes here about the current activity that kids were part of...</p>
                 </div>
 
+                <div class="" style="height: 40px; width: 100%; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+                  
+                  <i class="fa fa-bookmark-o" style="float: left; font-size: 25px; color: #ef3764;"></i>
+                  <i class="fa fa-share-alt" style="float: right; font-size: 25px; color: #f47550;"></i>
+                </div>
                 </div>
                 
             </div>
