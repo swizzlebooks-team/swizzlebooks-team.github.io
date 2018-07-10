@@ -20,15 +20,47 @@
     <!-- Linear Icons -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+
     <script type="text/javascript">
 
       function show_edit_options(){
         document.getElementById('edit_window').style.display = 'block';
       }
 
+      function update_image(){
+        document.getElementById('edit_window').style.display = 'none';
+        document.getElementById('select_image_window').style.display = 'block';
+      }
+
+      function edit_this_image(img_path){
+        
+        document.getElementById('select_image_window').style.display = 'none';
+        document.getElementById('image_edit_window').style.display = 'block';
+
+        $(document).ready(function(){
+
+          var basic = $('#demo-basic').croppie({
+            viewport: {
+              width: 200,
+              height: 200,
+              type: 'circle'
+            }
+          });
+
+          basic.croppie('bind', {
+            url: img_path
+          });
+
+        });
+      }
+
       function close_window(window_id){
         document.getElementById(window_id).style.display = 'none';
       }
+
+      
     </script>
 </head>
 <body>
@@ -73,7 +105,7 @@
                         <img src="../img/dp.png" style="width: 75px; float: left;">
                         <div style="margin:0 auto; display:inline-block; padding-left: 15px; padding-top: 5px;">
                           <p style="margin: 0px;"><b>Image #1</b></p>
-                          <button>Update This</button>
+                          <button onclick="update_image()">Update This</button>
                         </div>
                       </div>
                     </div>
@@ -98,6 +130,33 @@
             </div>
 
             <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('edit_window')">x</button>
+        </div>
+
+        <div id="select_image_window" class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px; width: 40%;">
+            <div class="col-md-12" style="padding: 25px;">
+                <div class="row">
+                    <div class="col-md-12 text-center" style="">
+                      <img src="../img/dp.png" style="width: 40%;" onclick="edit_this_image('../img/dp.png')">
+                    </div>
+                </div>
+            </div>
+
+            <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('select_image_window')">x</button>
+        </div>
+
+        <div id="image_edit_window" class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px; width: 40%;">
+            <div class="col-md-12 text-center" style="padding: 25px;">
+                <div class="row">
+                    <div class="col-md-12 text-center" style="height: 400px;">
+                      <div id="demo-basic" style="width: 200px; height: 200px;">
+                      </div>
+                      <br><br>
+                      <button>Done</button>
+                    </div>
+                </div>
+            </div>
+
+            <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('image_edit_window')">x</button>
         </div>
 
         <div class="row text-center" style="margin-top: 50px; padding-top: 25px;">
