@@ -33,32 +33,39 @@
         document.getElementById('edit_window').style.display = 'none';
         document.getElementById('select_image_window').style.display = 'block';
       }
+      
+      var vanilla;
 
       function edit_this_image(img_path){
         
         document.getElementById('select_image_window').style.display = 'none';
         document.getElementById('image_edit_window').style.display = 'block';
 
-        $(document).ready(function(){
+        var el = document.getElementById('demo-basic');
 
-          var basic = $('#demo-basic').croppie({
-            viewport: {
-              width: 200,
-              height: 200,
-              type: 'circle'
-            }
-          });
+        vanilla = new Croppie(el, {
+            viewport: { width: 200, height: 200, type: 'circle' },
+            boundary: { width: 220, height: 220 },
+            showZoomer: false,
+            enableOrientation: true
+        });
+        vanilla.bind({
+            url: img_path,
+            orientation: 1
+        });
 
-          basic.croppie('bind', {
-            url: img_path
-          });
+      }
 
+      function done(){
+        vanilla.result('base64').then(function(data) {
+            console.log(data);
         });
       }
 
       function close_window(window_id){
         document.getElementById(window_id).style.display = 'none';
       }
+
 
       
     </script>
@@ -144,11 +151,11 @@
             <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('select_image_window')">x</button>
         </div>
 
-        <div id="image_edit_window" class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px; width: 40%;">
+        <div class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px; width: 40%;">
             <div class="col-md-12 text-center" style="padding: 25px;">
                 <div class="row">
                     <div class="col-md-12 text-center" style="height: 400px;">
-                      <div id="demo-basic" style="width: 200px; height: 200px;">
+                      <div id="demo-basic1" style="width: 200px; height: 200px;">
                       </div>
                       <br><br>
                       <button>Done</button>
@@ -157,6 +164,15 @@
             </div>
 
             <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('image_edit_window')">x</button>
+        </div>
+
+        <div id="image_edit_window" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 30px; width: 40%;">
+          <div id="demo-basic" style="width: 200px; height: 200px;">
+          </div>
+          <br><br><br>
+          <button onclick="done()">Done</button>
+
+          <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('image_edit_window')">x</button>
         </div>
 
         <div class="row text-center" style="margin-top: 50px; padding-top: 25px;">
