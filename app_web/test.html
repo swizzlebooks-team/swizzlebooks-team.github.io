@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Swizzle Books | Preview</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../img/sw_logo_nav.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Linear Icons -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.224.1.min.js"></script>
+
+    <script type="text/javascript">
+
+      function dataURItoBlob(dataURI) {
+          var binary = atob(dataURI.split(',')[1]);
+          var array = [];
+          for(var i = 0; i < binary.length; i++) {
+              array.push(binary.charCodeAt(i));
+          }
+          return new Blob([new Uint8Array(array)], {type: 'image/png'});
+      }
+
+      function show_edit_options(){
+        document.getElementById('edit_window').style.display = 'block';
+      }
+
+      function update_image(){
+        //document.getElementById('edit_window').style.display = 'none';
+        document.getElementById('select_image_window').style.display = 'block';
+      }
+      
+      var vanilla;
+
+      function edit_this_image(img_path){
+        
+        document.getElementById('select_image_window').style.display = 'none';
+        document.getElementById('image_edit_window').style.display = 'block';
+
+        var el = document.getElementById('demo-basic');
+
+        vanilla = new Croppie(el, {
+            viewport: { width: 200, height: 200, type: 'circle' },
+            boundary: { width: 220, height: 220 },
+            showZoomer: true,
+            enableOrientation: true
+        });
+        vanilla.bind({
+            url: img_path,
+            orientation: 1
+        });
+
+      }
+
+      function done(){
+
+        document.getElementById('done').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+
+        vanilla.result('base64').then(function(img_data) {
+            //console.log(data);
+            var albumBucketName = 'toteyes-media';
+            var bucketRegion = 'us-east-1';
+            var IdentityPoolId = 'us-east-1:2ff7a961-c8a6-45ff-be75-9b3f85413525';
+
+            AWS.config.update({
+              region: bucketRegion,
+              credentials: new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: IdentityPoolId
+              })
+            });
+
+            var s3 = new AWS.S3({
+              apiVersion: '2006-03-01',
+              params: {Bucket: albumBucketName}
+            });
+
+            //buf = new Buffer(img_data.replace(/^data:image\/\w+;base64,/, ""),'base64')
+
+            var data = {
+              Key: 'sample-datauri.png', 
+              Body: dataURItoBlob(img_data),
+              ContentEncoding: 'base64',
+              ContentType: 'image/png',
+              ACL: 'public-read'
+            };
+
+            s3.putObject(data, function(err, data){
+                  if (err) { 
+                    console.log(err);
+                    console.log('Error uploading data: ', data); 
+                  } else {
+                    console.log('succesfully uploaded the image!');
+
+                    $(document).ready(function(){
+                      $.get('http://54.160.234.161:3000/sw_gen_page', function(data){
+                        if(data == 'ok'){
+
+                          document.getElementById('loader').style.display = 'none';
+
+                          location.reload();
+                        }
+                      })
+                    })
+                  }
+            });
+        });
+      }
+
+      function close_window(window_id){
+        document.getElementById(window_id).style.display = 'none';
+      }
+
+
+      
+    </script>
+</head>
+<body>
+
+    <div class="container-fluid">
+      
+      <nav id="nav" class="navbar navbar-default navbar-fixed-top" style="display: block;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"  style="padding: 5px;">
+              <img src="../img/sw_logo_nav.png" style="">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" style=''>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./notifications.html">Notifications</a></li>
+            <li><a href="./profile_settings.html">Settings</a></li>
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+
+        <div class="row" style="padding-top: 15px; position: fixed; top: 50px; left: 50%; transform: translateX(-50%); z-index: 1; display: block;">
+            <div class="col-md-12 text-center">
+                <button style="background-color: #ef3764; padding: 10px 13px 10px 13px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: #fff;" onclick="update_image()"><i class="fa fa-edit"></i> Edit This Page</button>
+            </div>
+        </div>
+
+        <div class="row text-center" style="margin-top: 50px; padding-top: 50px;">
+            <div class="col-md-12 hidden-xs">
+                <img src="https://s3.amazonaws.com/dev.swizzlebooks.com/out.png" style="width: 28%;">
+            </div>
+            <div class="col-xs-12 hidden-lg hidden-md hiddem-sm">
+                <img src="https://s3.amazonaws.com/dev.swizzlebooks.com/out.png" style="width: 80%;">
+            </div>
+        </div>
+
+        <div id="select_image_window" class="row" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 0px;">
+            <div class="col-md-12 text-center" style="padding: 25px;">
+              <!-- <h3>Select An Image</h3> -->
+                <div class="row">
+                    <div class="col-md-4 text-center" style="margin-top: 10px;">
+                      <img src="../img/dp.png" style="width: 100%;" onclick="edit_this_image('../img/dp.png')">
+                    </div>
+                    <div class="col-md-4 text-center" style="margin-top: 10px;">
+                      <img src="../img/kg.png" style="width: 100%;" onclick="edit_this_image('../img/kg.png')">
+                    </div>
+                    <div class="col-md-4 text-center" style="margin-top: 10px;">
+                      <img src="../img/school_logo.png" style="width: 100%;" onclick="edit_this_image('../img/school_logo.png')">
+                    </div>
+                </div>
+            </div>
+
+            <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('select_image_window')">x</button>
+        </div>
+
+        <div id="image_edit_window" style="position: fixed; top: 50px; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999; display: none; background-color: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); padding: 30px;">
+          <div id="demo-basic" style="width: 200px; height: 200px;">
+          </div>
+          <br><br><br>
+          <button id="done" onclick="done()" style="display: block;">Done</button>
+          <img id="loader" src="../img/loader.gif" style="width: 30px; display: none;">
+
+          <button style="position: absolute; background: red; color: white; border: none; border-radius: 50%; top: -10px; right: -10px;" onclick="close_window('image_edit_window')">x</button>
+        </div>
+
+        <div class="row" style="padding-top: 25px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" style="">
+                <hr class="">
+                <p style="margin: 0px;">
+                    <center>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Home</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Career</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Blog</a>
+                        <a href="#" style="color: #2d2d2d;font-size: 1em; padding-left: 7px; padding-right: 7px;">Contact Us</a>
+                    </center>
+                </p>
+                <p style="margin: 0px;">
+                    <img src="../img/sw_logo_nav.png" style="width: 75px;"> © 2018 Copyright Swizzle Books (<a href="//swizzlebooks.com">https://swizzlebooks.com</a>).
+                    <a href="#" style="color: #1DA1F2;font-size: 1.2em;"><i class="fa fa-twitter-square"></i></a>
+                    <a href="#" style="color: #3B5998;font-size: 1.2em;"><i class="fa fa-facebook-square"></i></a>
+                    <a href="#" style="color: #0077B5;font-size: 1.2em;"><i class="fa fa-linkedin-square"></i></a>
+                </p>
+                <center>
+                <p style="margin: 0px; font-style: italic; color: #424242; padding-bottom: 15px;">
+                    Make Your Own Yearbooks
+                </p>
+                </center>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

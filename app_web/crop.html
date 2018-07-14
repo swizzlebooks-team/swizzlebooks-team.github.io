@@ -63,7 +63,8 @@
 					Key: 'sample-datauri.png', 
 					Body: dataURItoBlob(img_data),
 					ContentEncoding: 'base64',
-					ContentType: 'image/png'
+					ContentType: 'image/png',
+					ACL: 'public-read'
 				};
 
 				s3.putObject(data, function(err, data){
